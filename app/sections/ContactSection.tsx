@@ -2,8 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Twitter, Linkedin, Github, MessageCircle, ExternalLink, MapPin, Clock } from "lucide-react";
-import Link from "next/link";
+import { Mail, Twitter, Linkedin, Github, MessageCircle, ExternalLink } from "lucide-react";
 
 const contacts = [
   {
@@ -103,7 +102,7 @@ export default function ContactSection() {
           className="text-center"
         >
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/923001234567"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-105"

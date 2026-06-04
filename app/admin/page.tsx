@@ -38,7 +38,7 @@ const mockStats = {
 const mockProjects = [
   { id: "1", title: "TokenAnalyzer", category: "AI / Crypto", status: "live", views: 2340 },
   { id: "2", title: "AlphaBot", category: "Automation", status: "live", views: 1890 },
-  { id: "3", title: "GoBook", category: "SaaS", status: "live", views: 1560 },
+  { id: "3", title: "GhostHub", category: "Automation", status: "live", views: 1560 },
 ];
 
 const mockLeads = [

@@ -1,70 +1,72 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useRef } from "react";
+import {
+  Brain,
+  Bot,
+  BarChart3,
+  Cloud,
+  Layers,
+  Workflow,
+  TrendingUp,
+  Shield,
+} from "lucide-react";
 
-const testimonials = [
+const impactMetrics = [
   {
     id: "1",
-    name: "Sarah Chen",
-    role: "CEO",
-    company: "TechVentures Inc.",
-    content: "Adil delivered an exceptional AI-powered dashboard that transformed our data analytics capabilities. The attention to detail and technical expertise is unmatched. Our team productivity increased by 40%.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+    icon: Brain,
+    title: "AI Projects Built",
+    value: "10+",
+    description: "Production AI systems including Nexa AI, Smart Agent Hub, and Mythos Nexus AI deployed and operational.",
+    highlight: "NLP, Agents, Analytics",
   },
   {
     id: "2",
-    name: "Michael Roberts",
-    role: "Founder",
-    company: "StartupFlow",
-    content: "Working with Adil was a game-changer for our startup. He built our entire SaaS platform from scratch — from the beautiful UI to the robust backend. The product launched ahead of schedule and exceeded all expectations.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    icon: Workflow,
+    title: "Automation Platforms",
+    value: "6+",
+    description: "End-to-end automation systems including AlphaBot, GhostHub, and Post Agent handling tasks at scale.",
+    highlight: "Trading, Scheduling, Distribution",
   },
   {
     id: "3",
-    name: "Emily Watson",
-    role: "Product Manager",
-    company: "DataDriven Co",
-    content: "The automation system Adil built for us saved hundreds of hours monthly. His understanding of business processes combined with technical skills made the implementation seamless. Highly recommended!",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+    icon: BarChart3,
+    title: "Analytics Systems",
+    value: "4+",
+    description: "Real-time dashboards and analytics platforms including TokenAnalyzer and SAH Ultimate for data-driven decisions.",
+    highlight: "Real-time, Predictive, Reporting",
   },
   {
     id: "4",
-    name: "David Kim",
-    role: "CTO",
-    company: "InnovateLabs",
-    content: "Adil's work on our mobile app was phenomenal. The app has a 4.9 star rating and thousands of active users. His expertise in React Native and attention to performance optimization is truly world-class.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+    icon: Cloud,
+    title: "SaaS Products",
+    value: "5+",
+    description: "Delivered SaaS platforms including SAH Poc Maker and Mythos Nexus AI with multi-tenancy and subscription models.",
+    highlight: "Multi-tenant, Scalable, API-first",
+  },
+  {
+    id: "5",
+    icon: Bot,
+    title: "Agent Systems",
+    value: "8+",
+    description: "Built autonomous agent architectures for Smart Agent Hub, GhostHub, and Post Agent with orchestration and monitoring.",
+    highlight: "Orchestration, RBAC, Monitoring",
+  },
+  {
+    id: "6",
+    icon: Layers,
+    title: "Active Portfolio",
+    value: "10",
+    description: "All projects actively maintained with continuous updates, feature additions, and production monitoring.",
+    highlight: "Maintained, Updated, Monitored",
   },
 ];
 
 export default function TestimonialsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const goTo = (index: number) => {
-    setCurrentIndex(index);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
-
-  const prev = () => goTo((currentIndex - 1 + testimonials.length) % testimonials.length);
-  const next = () => goTo((currentIndex + 1) % testimonials.length);
 
   return (
     <section id="testimonials" className="relative z-10 py-24 sm:py-32">
@@ -82,111 +84,55 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block px-4 py-1.5 text-sm font-medium text-primary glass rounded-full border border-primary/20 mb-4"
           >
-            Testimonials
+            Impact
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-4">
-            Client <span className="gradient-text">Stories</span>
+            Project <span className="gradient-text">Impact</span>
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto">
-            What clients say about working together.
+            Measurable outcomes across AI systems, automation platforms, and analytics products.
           </p>
         </motion.div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Glass Carousel Container */}
-          <div className="glass-strong rounded-3xl p-8 sm:p-12 glow-border relative overflow-hidden">
-            {/* Quote icon */}
-            <Quote className="absolute top-6 right-6 w-12 h-12 text-primary/10" />
-
-            {/* Testimonial Content */}
-            <div className="relative min-h-[200px]">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.id}
-                  initial={false}
-                  animate={{
-                    opacity: index === currentIndex ? 1 : 0,
-                    x: index === currentIndex ? 0 : index < currentIndex ? -50 : 50,
-                  }}
-                  transition={{ duration: 0.5 }}
-                  className={`${index === currentIndex ? "relative" : "absolute inset-0"}`}
-                  style={{ pointerEvents: index === currentIndex ? "auto" : "none" }}
-                >
-                  <div className="flex flex-col items-center text-center">
-                    {/* Avatar */}
-                    <div className="w-16 h-16 rounded-full overflow-hidden mb-4 ring-2 ring-primary/30 ring-offset-2 ring-offset-background">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Rating */}
-                    <div className="flex gap-1 mb-4">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < testimonial.rating
-                              ? "text-yellow-400 fill-yellow-400"
-                              : "text-white/20"
-                          }`}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Content */}
-                    <p className="text-white/80 text-lg leading-relaxed mb-6 max-w-2xl">
-                      "{testimonial.content}"
-                    </p>
-
-                    {/* Author */}
-                    <div>
-                      <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-white/50">
-                        {testimonial.role} at {testimonial.company}
-                      </p>
-                    </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {impactMetrics.map((metric, index) => (
+            <motion.div
+              key={metric.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group"
+            >
+              <div className="glass-card rounded-2xl p-6 h-full glow-border hover:border-primary/30 transition-all duration-300">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <metric.icon className="w-6 h-6 text-primary" />
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <span className="text-2xl font-bold font-display gradient-text">
+                    {metric.value}
+                  </span>
+                </div>
 
-            {/* Navigation */}
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <button
-                onClick={prev}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center hover:border-primary/30 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="w-5 h-5 text-white/70" />
-              </button>
+                <h3 className="text-lg font-bold text-white mb-2">{metric.title}</h3>
+                <p className="text-sm text-white/60 leading-relaxed mb-4">
+                  {metric.description}
+                </p>
 
-              <div className="flex gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goTo(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentIndex
-                        ? "w-6 bg-primary"
-                        : "bg-white/20 hover:bg-white/40"
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
+                <div className="flex flex-wrap gap-2">
+                  {metric.highlight.split(", ").map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 text-xs text-primary/70 glass rounded-md border border-primary/10"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              <button
-                onClick={next}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center hover:border-primary/30 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="w-5 h-5 text-white/70" />
-              </button>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

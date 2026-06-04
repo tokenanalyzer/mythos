@@ -41,7 +41,6 @@ export default function AboutSection() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-center">
-          {/* Glass Card */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -49,7 +48,6 @@ export default function AboutSection() {
             className="relative"
           >
             <div className="glass-strong rounded-3xl p-8 sm:p-10 glow-border relative overflow-hidden">
-              {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary/10 rounded-full blur-2xl" />
 
@@ -60,22 +58,28 @@ export default function AboutSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">Adil Hussain</h3>
-                    <p className="text-sm text-primary">Full-Stack Developer & AI Specialist</p>
+                    <p className="text-sm text-primary">AI Product Developer & Automation Specialist</p>
                   </div>
                 </div>
 
-                <p className="text-white/70 leading-relaxed mb-6">
-                  I am a developer and AI enthusiast focused on creating intelligent digital products, 
-                  automation systems, mobile applications, dashboards, CRM platforms and business software solutions.
+                <p className="text-white/70 leading-relaxed mb-4">
+                  I build AI-driven products and automation systems that solve real business problems. 
+                  My work spans intelligent analytics platforms, autonomous agent systems, and SaaS tools 
+                  designed to operate at scale.
+                </p>
+                <p className="text-white/70 leading-relaxed mb-4">
+                  Projects like <span className="text-primary">TokenAnalyzer</span>, <span className="text-primary">Nexa AI</span>, 
+                  and <span className="text-primary">Smart Agent Hub</span> reflect a focus on practical AI 
+                  integration — turning complex models into usable products.
                 </p>
                 <p className="text-white/70 leading-relaxed">
-                  I enjoy transforming ideas into scalable products that solve real-world problems. 
-                  With expertise in modern web technologies and AI integration, I build solutions that 
-                  drive business growth and deliver exceptional user experiences.
+                  I also work on infrastructure-level tools like <span className="text-primary">GhostHub</span> 
+                  and <span className="text-primary">Mythos Nexus AI</span>, building the backend systems and 
+                  orchestration layers that keep automation running reliably.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {["React", "Next.js", "TypeScript", "Python", "AI/ML", "Firebase"].map((tech) => (
+                  {["Next.js", "TypeScript", "Python", "OpenAI", "Supabase", "FastAPI"].map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1.5 text-xs font-medium text-primary/80 glass rounded-lg border border-primary/20"
@@ -88,7 +92,6 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Features Grid */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
