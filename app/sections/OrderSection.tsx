@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Send, CheckCircle, Loader2, ArrowRight, Briefcase, DollarSign, MessageSquare, User, Mail, Phone } from "lucide-react";
+import { Send, CheckCircle, Loader2, ArrowRight, Briefcase, DollarSign, MessageSquare, User, Mail, Phone, AlertCircle } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -42,6 +42,7 @@ export default function OrderSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -54,15 +55,26 @@ export default function OrderSection() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
+    setError(null);
+
     try {
-      // Simulate API call - replace with actual Firebase integration
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Form data:", data);
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
+      }
+
       setIsSuccess(true);
       reset();
-      setTimeout(() => setIsSuccess(false), 5000);
-    } catch (error) {
-      console.error("Error:", error);
+      setTimeout(() => setIsSuccess(false), 8000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -114,8 +126,18 @@ export default function OrderSection() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
+                  >
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                    <span>{error}</span>
+                  </motion.div>
+                )}
+
                 <div className="grid sm:grid-cols-2 gap-6">
-                  {/* Name */}
                   <div>
                     <label className="flex items-center gap-2 text-sm font-medium text-white mb-2">
                       <User className="w-4 h-4 text-primary" />
@@ -132,7 +154,6 @@ export default function OrderSection() {
                     )}
                   </div>
 
-                  {/* Email */}
                   <div>
                     <label className="flex items-center gap-2 text-sm font-medium text-white mb-2">
                       <Mail className="w-4 h-4 text-primary" />
@@ -151,7 +172,6 @@ export default function OrderSection() {
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
-                  {/* Phone */}
                   <div>
                     <label className="flex items-center gap-2 text-sm font-medium text-white mb-2">
                       <Phone className="w-4 h-4 text-primary" />
@@ -168,7 +188,6 @@ export default function OrderSection() {
                     )}
                   </div>
 
-                  {/* Project Type */}
                   <div>
                     <label className="flex items-center gap-2 text-sm font-medium text-white mb-2">
                       <Briefcase className="w-4 h-4 text-primary" />
@@ -191,7 +210,6 @@ export default function OrderSection() {
                   </div>
                 </div>
 
-                {/* Budget */}
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-white mb-2">
                     <DollarSign className="w-4 h-4 text-primary" />
@@ -213,7 +231,6 @@ export default function OrderSection() {
                   )}
                 </div>
 
-                {/* Message */}
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-white mb-2">
                     <MessageSquare className="w-4 h-4 text-primary" />
@@ -230,7 +247,6 @@ export default function OrderSection() {
                   )}
                 </div>
 
-                {/* Submit */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
