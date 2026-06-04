@@ -1,1 +1,9 @@
-{"/api/leads/route":"/api/leads","/robots.txt/route":"/robots.txt","/sitemap.xml/route":"/sitemap.xml","/page":"/","/_not-found/page":"/_not-found","/admin/page":"/admin"}
+{
+  "/_not-found/page": "/_not-found",
+  "/_global-error/page": "/_global-error",
+  "/api/leads/route": "/api/leads",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/admin/page": "/admin",
+  "/page": "/"
+}
