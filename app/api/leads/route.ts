@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { createClient } from "@supabase/supabase-js";
 
 const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
+
+// Supabase client for server-side (using service role key if available, otherwise anon)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,6 +21,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // 1. Save to Supabase
+    const { error: dbError } = await supabase
+      .from("leads")
+      .insert([{ name, email, phone, project_type: projectType, budget, message }]);
+
+    if (dbError) {
+      console.error("Supabase error:", dbError);
+      // We continue even if DB fails, to ensure email is sent
+    }
+
+    // 2. Send Email
     const { data, error } = await resend.emails.send({
       from: "MYTHOS Leads <onboarding@resend.dev>",
       to: ["adilcryptonews@gmail.com"],
