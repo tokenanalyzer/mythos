@@ -97,10 +97,23 @@ export default function AdminDashboard() {
   if (isLoading) return <div className="min-h-screen bg-black flex items-center justify-center text-primary">Loading...</div>;
 
   if (!isAuthenticated) {
+    const isUrlMissing = !process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const isKeyMissing = !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
     return (
       <div className="min-h-screen bg-black flex items-center justify-center p-6">
         <div className="w-full max-w-md p-8 bg-zinc-900 rounded-3xl border border-white/10">
           <h1 className="text-2xl font-bold text-white mb-6 text-center">MYTHOS Admin</h1>
+          
+          {(isUrlMissing || isKeyMissing) && (
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-500 text-xs">
+              <p className="font-bold mb-1">⚠️ Configuration Error:</p>
+              {isUrlMissing && <p>• NEXT_PUBLIC_SUPABASE_URL is missing</p>}
+              {isKeyMissing && <p>• NEXT_PUBLIC_SUPABASE_ANON_KEY is missing</p>}
+              <p className="mt-2 text-[10px] opacity-70">Please add these to Vercel Environment Variables and Redeploy.</p>
+            </div>
+          )}
+
           <form onSubmit={handleLogin} className="space-y-4">
             <input type="email" placeholder="Email" className="w-full p-4 bg-black rounded-xl border border-white/10 text-white" value={loginForm.email} onChange={e => setLoginForm({...loginForm, email: e.target.value})} required />
             <input type="password" placeholder="Password" className="w-full p-4 bg-black rounded-xl border border-white/10 text-white" value={loginForm.password} onChange={e => setLoginForm({...loginForm, password: e.target.value})} required />
