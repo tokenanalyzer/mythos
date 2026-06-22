@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Sparkles, Code2, Smartphone, Globe, Database, Bot, BarChart3, Layers } from "lucide-react";
+import ThreeDCube from "../components/ThreeDCube";
 import Link from "next/link";
 import CountUp from "react-countup";
 
