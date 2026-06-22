@@ -1,9 +1,25 @@
-"use client";
+import { Metadata } from "next";
 import { motion } from "framer-motion";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions | MYTHOS - AI Systems & Digital Products",
+  description: "Terms & Conditions for MYTHOS. Read our service terms, limitations of liability, and legal policies for AI development and digital product services.",
+  keywords: "terms and conditions, terms of service, legal terms, service agreement",
+  robots: "index, follow",
+  openGraph: {
+    title: "Terms & Conditions | MYTHOS",
+    description: "Terms & Conditions for MYTHOS. Read our service terms and legal policies.",
+    type: "website",
+    url: "https://mythos-lemon-beta.vercel.app/terms-and-conditions",
+  },
+  alternates: {
+    canonical: "https://mythos-lemon-beta.vercel.app/terms-and-conditions",
+  },
+};
 
 export default function TermsAndConditions() {
   return (

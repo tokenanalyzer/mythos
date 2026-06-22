@@ -1,20 +1,24 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://mythos.vercel.app";
-
   return [
     {
-      url: baseUrl,
+      url: 'https://mythos-lemon-beta.vercel.app',
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/admin`,
+      url: 'https://mythos-lemon-beta.vercel.app/privacy-policy',
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://mythos-lemon-beta.vercel.app/terms-and-conditions',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
   ];
 }

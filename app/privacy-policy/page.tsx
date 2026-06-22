@@ -1,9 +1,25 @@
-"use client";
+import { Metadata } from "next";
 import { motion } from "framer-motion";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | MYTHOS - AI Systems & Digital Products",
+  description: "Privacy Policy for MYTHOS. Learn how we collect, use, and protect your personal data when using our AI development and digital product services.",
+  keywords: "privacy policy, data protection, GDPR, personal data, AI development",
+  robots: "index, follow",
+  openGraph: {
+    title: "Privacy Policy | MYTHOS",
+    description: "Privacy Policy for MYTHOS. Learn how we collect, use, and protect your personal data.",
+    type: "website",
+    url: "https://mythos-lemon-beta.vercel.app/privacy-policy",
+  },
+  alternates: {
+    canonical: "https://mythos-lemon-beta.vercel.app/privacy-policy",
+  },
+};
 
 export default function PrivacyPolicy() {
   return (
