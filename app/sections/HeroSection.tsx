@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play, Sparkles, Code2, Smartphone, Globe, Database, Bot, BarChart3, Layers } from "lucide-react";
+import { ArrowRight, Play, Sparkles, MessageCircle, Code2, Smartphone, Globe, Database, Bot, BarChart3, Layers } from "lucide-react";
 import ThreeDCube from "../components/ThreeDCube";
 import Link from "next/link";
 import CountUp from "react-countup";
@@ -22,6 +22,11 @@ const services = [
   "Dashboards",
   "Automation Platforms",
 ];
+
+const WHATSAPP_NUMBER = "919967873413";
+const WHATSAPP_MESSAGE = "Hi Adil, I want to discuss a project.";
+const whatsappUrl = `https://wa.me/+${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -129,6 +134,29 @@ export default function HeroSection() {
               Start Your Project
             </span>
           </Link>
+
+          <motion.a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              if (typeof window !== "undefined" && window.gtag) {
+                window.gtag("event", "whatsapp_click", {
+                  event_category: "engagement",
+                  event_label: "hero_section",
+                });
+              }
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="group relative px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-green-500 to-green-600 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25 hover:scale-105"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              <MessageCircle className="w-4 h-4" />
+              Chat on WhatsApp
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </motion.a>
         </motion.div>
 
         {/* Floating Stats */}

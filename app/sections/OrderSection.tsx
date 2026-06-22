@@ -7,6 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Send, CheckCircle, Loader2, ArrowRight, Briefcase, DollarSign, MessageSquare, User, Mail, Phone, AlertCircle } from "lucide-react";
 
+const WHATSAPP_NUMBER = "919967873413";
+const WHATSAPP_MESSAGE = "Hi Adil, I want to discuss a project.";
+const whatsappUrl = `https://wa.me/+${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
