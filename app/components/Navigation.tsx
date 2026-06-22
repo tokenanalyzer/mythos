@@ -82,7 +82,7 @@ export default function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
+              {[...navLinks, ...legalLinks].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -140,7 +140,7 @@ export default function Navigation() {
             <div className="absolute inset-0 bg-background/95 backdrop-blur-xl" onClick={() => setIsMobileMenuOpen(false)} />
             <div className="absolute top-20 left-4 right-4 glass-strong rounded-2xl p-6">
               <div className="flex flex-col gap-2">
-                {navLinks.map((link, index) => (
+                {[...navLinks, ...legalLinks].map((link, index) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: -20 }}

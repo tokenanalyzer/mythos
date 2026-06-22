@@ -41,7 +41,7 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
       {/* 3D Cube Background */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-1/2 h-full flex items-center justify-center pointer-events-none z-0 opacity-30 md:opacity-50">
+      <div className="absolute inset-y-0 right-0 w-full md:w-1/2 h-full flex items-center justify-center pointer-events-none z-10 opacity-50 md:opacity-100">
         <div className="w-full h-full max-w-2xl">
           <ThreeDCube />
         </div>
