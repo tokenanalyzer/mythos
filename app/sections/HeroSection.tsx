@@ -40,6 +40,12 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
+      {/* 3D Cube Background */}
+      <div className="absolute inset-y-0 right-0 w-full md:w-1/2 h-full flex items-center justify-center pointer-events-none z-0 opacity-30 md:opacity-50">
+        <div className="w-full h-full max-w-2xl">
+          <ThreeDCube />
+        </div>
+      </div>
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
         {/* Gradient orbs */}
